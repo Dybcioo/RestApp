@@ -30,7 +30,11 @@ namespace TaskApi
             {
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DateConventer());
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskApi", Version = "v1" });
