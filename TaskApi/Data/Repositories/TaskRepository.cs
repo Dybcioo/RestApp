@@ -49,5 +49,11 @@ namespace TaskApi.Data.Repositories
         {
             _context.Tasks.Remove(task);
         }
+
+        public Task<bool> TaskExistAsync(int taskId)
+        {
+            return _context.Tasks
+                .AnyAsync(x => x.Id == taskId);
+        }
     }
 }

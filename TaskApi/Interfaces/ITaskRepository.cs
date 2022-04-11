@@ -12,5 +12,6 @@ namespace TaskApi.Interfaces
         Task<TaskEntity> AddTaskAsync(TaskDto taskDto);
         void UpdateTask(TaskEntity task);
         void DeleteTask(TaskEntity task);
+        Task<bool> TaskExistAsync(int taskId);
     }
 }
