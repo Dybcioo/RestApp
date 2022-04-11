@@ -9,6 +9,7 @@ using TaskApi.Data;
 using TaskApi.Data.Repositories;
 using TaskApi.Helpers;
 using TaskApi.Interfaces;
+using TaskApi.Middleware;
 
 namespace TaskApi
 {
@@ -43,9 +44,10 @@ namespace TaskApi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskApi v1"));
             }
